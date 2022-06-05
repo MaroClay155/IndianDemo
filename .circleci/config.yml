@@ -16,23 +16,23 @@ jobs:
       - checkout
       - run: python3 main-test.py
       
-  save_hello_world_output:
+ save_hello_world_output:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - run: echo "Helllooooo World..!" > output.txt
+      - run: echo "hello world" > ~/output.txt
       - persist_to_workspace:
-          root: /tmp/workspace
+          root: ~/
           paths:
-            - target/output.txt
-            - build/*
-   print_output_file:
+            - output.txt
+
+  print_output_file:
     docker:
       - image: circleci/node:13.8.0
     steps:
       - attach_workspace:
-          at: /tmp/workspace
-      - run: cat output.txt
+          at: ~/
+      - run: cat ~/output.txt
       
 workflows:
   build_and_test:
