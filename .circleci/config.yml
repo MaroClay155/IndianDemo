@@ -15,7 +15,7 @@ jobs:
     steps:
       - checkout
       - run: python3 main-test.py
-       - run:
+      - run:
           name: on error
           command: echo "Error in test1"
           when: on_fail
